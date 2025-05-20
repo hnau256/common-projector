@@ -14,7 +14,7 @@ repositories {
 }
 
 group = "com.github.hnau256"
-version = "1.0.0"
+version = "1.0.1"
 
 android {
     namespace = "hnau.common.compose"
@@ -26,10 +26,6 @@ android {
 
     buildFeatures {
         compose = true
-    }
-
-    composeOptions {
-        kotlinCompilerExtensionVersion = "1.8.0"
     }
 
     compileOptions {
@@ -57,10 +53,6 @@ dependencies {
     implementation("androidx.compose.runtime:runtime:$composeVersion")
     implementation("androidx.compose.foundation:foundation:$composeVersion")
     implementation("androidx.compose.material3:material3:1.3.2")
-}
-
-task("qwerty") {
-    println("QWERTY: ${android.sourceSets["main"].java.srcDirs}")
 }
 
 tasks {
