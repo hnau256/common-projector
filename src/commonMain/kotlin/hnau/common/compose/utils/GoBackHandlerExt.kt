@@ -5,7 +5,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
-import hnau.common.app.goback.GoBackHandler
+import hnau.common.model.goback.GoBackHandler
 
 @Composable
 fun GoBackHandler.NavigationIcon() {

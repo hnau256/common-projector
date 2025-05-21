@@ -19,7 +19,7 @@ import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.KeyboardCapitalization
 import androidx.compose.ui.text.input.VisualTransformation
-import hnau.common.app.EditingString
+import hnau.common.model.EditingString
 import hnau.common.compose.uikit.shape.HnauShape
 import hnau.common.compose.utils.textFieldValueMapper
 import kotlinx.coroutines.flow.MutableStateFlow

@@ -4,7 +4,7 @@ import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.remember
-import hnau.common.app.ListScrollState
+import hnau.common.model.ListScrollState
 import kotlinx.coroutines.flow.MutableStateFlow
 
 @Composable

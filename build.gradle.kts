@@ -18,10 +18,10 @@ repositories {
 }
 
 group = "com.github.hnau256"
-version = "1.0.3"
+version = "1.0.4"
 
 android {
-    namespace = "com.github.hnau256.common.compose"
+    namespace = "com.github.hnau256." + project.name.replace('-', '.')
     compileSdk = 35
     defaultConfig {
         minSdk = 24
@@ -57,7 +57,7 @@ kotlin {
                 implementation(compose.materialIconsExtended)
 
                 implementation("com.github.hnau256:common-kotlin:1.0.0")
-                implementation("com.github.hnau256:common-app:1.0.0")
+                implementation("com.github.hnau256:common-model:1.0.1")
                 implementation("com.github.hnau256:common-color:1.0.2")
                 implementation("com.github.hnau256:common-dynamiccolor:1.0.0")
 

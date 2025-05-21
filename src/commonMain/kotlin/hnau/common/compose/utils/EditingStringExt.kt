@@ -2,7 +2,7 @@ package hnau.common.compose.utils
 
 import androidx.compose.ui.text.TextRange
 import androidx.compose.ui.text.input.TextFieldValue
-import hnau.common.app.EditingString
+import hnau.common.model.EditingString
 import hnau.common.kotlin.mapper.Mapper
 
 
