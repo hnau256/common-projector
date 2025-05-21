@@ -1,6 +1,6 @@
 package hnau.common.compose.projector.stack
 
-import hnau.common.model.model.stack.NonEmptyStack
+import hnau.common.model.stack.NonEmptyStack
 import hnau.common.kotlin.coroutines.createChild
 import hnau.common.kotlin.coroutines.mapStateLite
 import hnau.common.kotlin.coroutines.runningFoldState

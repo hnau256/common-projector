@@ -9,7 +9,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.Modifier
 import arrow.core.Either
-import hnau.common.color.material.MaterialHue
+import hnau.common.model.color.material.MaterialHue
 import hnau.common.compose.utils.DynamicColorsGenerator
 import hnau.common.compose.utils.ThemeBrightness
 import hnau.common.compose.utils.buildPrettyColorScheme

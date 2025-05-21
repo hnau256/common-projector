@@ -1,7 +1,7 @@
 package hnau.common.compose.uikit.color
 
 import androidx.compose.ui.graphics.Color
-import hnau.common.color.RGBABytes
+import hnau.common.model.color.RGBABytes
 
 
 val RGBABytes.compose: Color

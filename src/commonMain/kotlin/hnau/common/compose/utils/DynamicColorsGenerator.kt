@@ -3,7 +3,7 @@ package hnau.common.compose.utils
 import androidx.compose.material3.ColorScheme
 import androidx.compose.runtime.Composable
 
-interface DynamicColorsGenerator {
+fun interface DynamicColorsGenerator {
 
     @Composable
     fun generateDynamicColors(
