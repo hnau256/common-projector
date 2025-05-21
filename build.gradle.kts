@@ -19,7 +19,7 @@ repositories {
 }
 
 group = "com.github.hnau256"
-version = "1.0.8"
+version = "1.0.9"
 
 android {
     namespace = "com.github.hnau256." + project.name.replace('-', '.')
@@ -59,6 +59,7 @@ kotlin {
 
                 implementation("com.github.hnau256:common-kotlin:1.0.0")
                 implementation("com.github.hnau256:common-model:1.0.7")
+                implementation("com.github.hnau256:common-dynamiccolor:1.0.0")
 
                 val arrow = "1.2.4"
                 implementation("io.arrow-kt:arrow-core:$arrow")
