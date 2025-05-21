@@ -13,12 +13,13 @@ plugins {
 repositories {
     mavenCentral()
     google()
+    mavenLocal()
     maven("https://jitpack.io")
     maven("https://maven.pkg.jetbrains.space/public/p/compose/dev")
 }
 
 group = "com.github.hnau256"
-version = "1.0.7"
+version = "1.0.8"
 
 android {
     namespace = "com.github.hnau256." + project.name.replace('-', '.')
@@ -57,12 +58,19 @@ kotlin {
                 implementation(compose.materialIconsExtended)
 
                 implementation("com.github.hnau256:common-kotlin:1.0.0")
-                implementation("com.github.hnau256:common-model:1.0.2")
+                implementation("com.github.hnau256:common-model:1.0.7")
 
                 val arrow = "1.2.4"
                 implementation("io.arrow-kt:arrow-core:$arrow")
-                implementation("org.jetbrains.kotlinx:kotlinx-serialization-core:1.8.1")
+                implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.8.1")
                 implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.10.1")
+            }
+        }
+
+        androidMain {
+            dependencies {
+                implementation("androidx.activity:activity-compose:1.10.1")
+                implementation("androidx.appcompat:appcompat:1.7.0")
             }
         }
     }

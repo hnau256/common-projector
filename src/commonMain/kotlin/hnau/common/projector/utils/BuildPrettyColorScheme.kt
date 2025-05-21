@@ -8,6 +8,7 @@ import hnau.common.model.color.material.MaterialColors
 import hnau.common.model.color.material.get
 import hnau.common.model.color.material.MaterialHue
 import com.google.material.scheme.Scheme
+import hnau.common.model.ThemeBrightness
 
 fun buildPrettyColorScheme(
     primaryHue: MaterialHue,
