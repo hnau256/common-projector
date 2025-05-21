@@ -1,4 +1,4 @@
-rootProject.name = "common-compose"
+rootProject.name = "common-projector"
 
 pluginManagement {
     repositories {
