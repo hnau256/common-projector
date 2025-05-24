@@ -19,7 +19,7 @@ repositories {
 }
 
 group = "com.github.hnau256"
-version = "1.0.13"
+version = "1.0.14"
 
 android {
     namespace = "com.github.hnau256." + project.name.replace('-', '.')
@@ -71,13 +71,13 @@ kotlin {
             dependencies {
                 implementation("androidx.activity:activity-compose:1.10.1")
                 implementation("androidx.appcompat:appcompat:1.7.0")
-                implementation("com.github.hnau256:common-model-android:1.0.10")
+                implementation("com.github.hnau256.common-model:common-model-android:1.0.10")
             }
         }
 
         jvmMain {
             dependencies {
-                implementation("com.github.hnau256:common-model-jvm:1.0.10")
+                implementation("com.github.hnau256.common-model:common-model-jvm:1.0.10")
             }
         }
     }
