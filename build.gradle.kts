@@ -19,7 +19,7 @@ repositories {
 }
 
 group = "com.github.hnau256"
-version = "1.0.11"
+version = "1.0.12"
 
 android {
     namespace = "com.github.hnau256." + project.name.replace('-', '.')
@@ -39,7 +39,7 @@ android {
 }
 
 kotlin {
-    jvm("desktop")
+    jvm()
 
     androidTarget {
         compilerOptions {
@@ -58,7 +58,7 @@ kotlin {
                 implementation(compose.materialIconsExtended)
 
                 implementation("com.github.hnau256:common-kotlin:1.0.0")
-                implementation("com.github.hnau256:common-model:1.0.9")
+                implementation("com.github.hnau256:common-model:1.0.10")
                 implementation("com.github.hnau256:common-dynamiccolor:1.0.0")
 
                 val arrow = "1.2.4"
