@@ -1,9 +1,12 @@
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+
 plugins {
     val kotlinVersion = "2.1.20"
+    kotlin("multiplatform") version kotlinVersion
     id("com.android.library") version "8.7.2"
-    kotlin("android") version kotlinVersion
+    id("org.jetbrains.compose") version "1.8.0"
+    kotlin("plugin.compose") version kotlinVersion
     id("maven-publish")
-    id("org.jetbrains.kotlin.plugin.compose") version kotlinVersion
     kotlin("plugin.serialization") version kotlinVersion
 }
 
@@ -16,7 +19,7 @@ repositories {
 }
 
 group = "com.github.hnau256"
-version = "1.0.15"
+version = "1.0.14"
 
 android {
     namespace = "com.github.hnau256." + project.name.replace('-', '.')
@@ -33,47 +36,60 @@ android {
             isMinifyEnabled = false
         }
     }
-    publishing {
-        singleVariant("release") {}
+}
+
+kotlin {
+    jvm()
+
+    androidTarget {
+        compilerOptions {
+            jvmTarget.set(JvmTarget.JVM_17)
+        }
+        publishLibraryVariants("release")
     }
-}
 
-dependencies {
+    sourceSets {
+        commonMain {
+            dependencies {
+                implementation(compose.runtime)
+                implementation(compose.ui)
+                implementation(compose.foundation)
+                implementation(compose.material3)
+                implementation(compose.materialIconsExtended)
 
-    implementation("com.github.hnau256:common-kotlin:1.0.3")
-    implementation("com.github.hnau256:common-dynamiccolor:1.0.0")
-    implementation("com.github.hnau256:common-model:1.0.12")
+                implementation("com.github.hnau256:common-kotlin:1.0.0")
+                implementation("com.github.hnau256:common-dynamiccolor:1.0.0")
 
-    val arrow = "1.2.4"
-    implementation("io.arrow-kt:arrow-core:$arrow")
-    implementation("io.arrow-kt:arrow-core-serialization:$arrow")
+                val arrow = "1.2.4"
+                implementation("io.arrow-kt:arrow-core:$arrow")
+                implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.8.1")
+                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.10.1")
+            }
+        }
 
-    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.8.1")
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.10.1")
-    implementation("org.jetbrains.kotlinx:kotlinx-io-core:0.7.0")
-    implementation("androidx.appcompat:appcompat:1.7.0")
+        androidMain {
+            dependencies {
+                implementation("androidx.activity:activity-compose:1.10.1")
+                implementation("androidx.appcompat:appcompat:1.7.0")
+                implementation("com.github.hnau256.common-model:common-model-android:1.0.10")
+            }
+        }
 
-    implementation("androidx.compose.ui:ui:1.8.2")
-    implementation("androidx.compose.material3:material3:1.3.2")
-}
-
-tasks {
-    create<Jar>("sourcesJar") {
-        archiveClassifier.set("sources")
-        from(android.sourceSets["main"].java.srcDirs)
+        jvmMain {
+            dependencies {
+                implementation("com.github.hnau256.common-model:common-model-jvm:1.0.10")
+            }
+        }
     }
 }
 
 publishing {
     publications {
-        create<MavenPublication>("maven") {
-            groupId = project.group as String
-            artifactId = project.name
-            version = project.version as String
-            afterEvaluate {
-                from(components["release"])
+        configureEach {
+            (this as MavenPublication).apply {
+                groupId = project.group as String
+                version = project.version as String
             }
-            artifact(tasks["sourcesJar"])
         }
     }
 }

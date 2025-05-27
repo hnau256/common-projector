@@ -17,6 +17,7 @@ import hnau.common.model.goback.GlobalGoBackHandler
 import hnau.common.model.goback.GlobalGoBackHandlerImpl
 import hnau.common.projector.utils.DynamicColorsGenerator
 import hnau.common.projector.utils.buildPrettyColorScheme
+import hnau.common.projector.utils.provideDynamicColorsGenerator
 import hnau.common.projector.utils.system
 import kotlinx.coroutines.CoroutineScope
 
@@ -34,7 +35,7 @@ class AppProjector<M, S, P>(
     )
 
     private val dynamicColorsGenerator: DynamicColorsGenerator? =
-        DynamicColorsGenerator.createIfSupported()
+        provideDynamicColorsGenerator()
 
     @Composable
     fun Content() {
