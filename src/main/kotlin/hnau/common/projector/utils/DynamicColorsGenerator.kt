@@ -9,14 +9,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.LocalContext
 import hnau.common.model.ThemeBrightness
 
-actual fun provideDynamicColorsGenerator(): DynamicColorsGenerator? =
-    AndroidDynamicColorsGenerator.createIfSupported()
-
-private class AndroidDynamicColorsGenerator private constructor() : DynamicColorsGenerator {
+class DynamicColorsGenerator private constructor() {
 
     @RequiresApi(Build.VERSION_CODES.S)
     @Composable
-    override fun generateDynamicColors(
+    fun generateDynamicColors(
         brightness: ThemeBrightness,
     ): ColorScheme {
         val context = LocalContext.current
@@ -28,9 +25,9 @@ private class AndroidDynamicColorsGenerator private constructor() : DynamicColor
 
     companion object {
 
-        fun createIfSupported(): AndroidDynamicColorsGenerator? =
+        fun createIfSupported(): DynamicColorsGenerator? =
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
-                AndroidDynamicColorsGenerator()
+                DynamicColorsGenerator()
             } else {
                 null
             }
