@@ -40,6 +40,7 @@ android {
 
 kotlin {
     jvm()
+    linuxX64()
 
     androidTarget {
         compilerOptions {
@@ -49,7 +50,7 @@ kotlin {
     }
 
     sourceSets {
-        commonMain {
+        val commonMain by getting {
             dependencies {
                 implementation(compose.runtime)
                 implementation(compose.ui)
@@ -57,8 +58,8 @@ kotlin {
                 implementation(compose.material3)
                 implementation(compose.materialIconsExtended)
 
-                implementation("com.github.hnau256:common-kotlin:1.0.0")
-                implementation("com.github.hnau256:common-dynamiccolor:1.0.0")
+                implementation("com.github.hnau256.common-kotlin:common-kotlin:1.0.2")
+                implementation("com.github.hnau256:common-model:1.0.12")
 
                 val arrow = "1.2.4"
                 implementation("io.arrow-kt:arrow-core:$arrow")
@@ -67,18 +68,23 @@ kotlin {
             }
         }
 
+        val sharedJvmMain by creating {
+            dependsOn(commonMain)
+            dependencies {
+                implementation("com.github.hnau256:common-dynamiccolor:1.0.0")
+            }
+        }
+
         androidMain {
+            dependsOn(sharedJvmMain)
             dependencies {
                 implementation("androidx.activity:activity-compose:1.10.1")
                 implementation("androidx.appcompat:appcompat:1.7.0")
-                implementation("com.github.hnau256.common-model:common-model-android:1.0.10")
             }
         }
 
         jvmMain {
-            dependencies {
-                implementation("com.github.hnau256.common-model:common-model-jvm:1.0.10")
-            }
+            dependsOn(sharedJvmMain)
         }
     }
 }

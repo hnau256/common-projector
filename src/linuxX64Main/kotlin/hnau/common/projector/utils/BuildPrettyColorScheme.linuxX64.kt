@@ -1,9 +1,9 @@
 package hnau.common.projector.utils
 
-import hnau.common.model.color.material.MaterialHue
 import hnau.common.model.ThemeBrightness
+import hnau.common.model.color.material.MaterialHue
 
-expect fun buildPrettyColorScheme(
+actual fun buildPrettyColorScheme(
     primaryHue: MaterialHue,
     brightness: ThemeBrightness,
-): Any? /*androidx.compose.material3.ColorScheme*/
+): Any? = null
