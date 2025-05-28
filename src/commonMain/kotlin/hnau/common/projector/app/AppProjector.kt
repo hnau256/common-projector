@@ -68,8 +68,6 @@ class AppProjector<M, S, P>(
                     primaryHue = hue,
                     brightness = brightness,
                 )
-                    ?.let { it as ColorScheme }
-                    ?: MaterialTheme.colorScheme
             }
 
         MaterialTheme(
