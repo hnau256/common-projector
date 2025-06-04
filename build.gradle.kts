@@ -19,7 +19,7 @@ repositories {
 }
 
 group = "com.github.hnau256"
-version = "1.0.16"
+version = "1.0.17"
 
 android {
     namespace = "com.github.hnau256." + project.name.replace('-', '.')
@@ -58,13 +58,15 @@ kotlin {
                 implementation(compose.materialIconsExtended)
 
                 implementation("com.github.hnau256.common-kotlin:common-kotlin:1.0.2")
-                implementation("com.github.hnau256.common-model:common-model:1.0.13")
+                implementation("com.github.hnau256.common-model:common-model:1.0.14")
                 implementation("com.github.hnau256:common-dynamiccolor:1.0.0")
 
                 val arrow = "1.2.4"
                 implementation("io.arrow-kt:arrow-core:$arrow")
+
                 implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.8.1")
-                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.10.1")
+                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.10.2")
+                implementation("org.jetbrains.kotlinx:kotlinx-collections-immutable:0.4.0")
             }
         }
 

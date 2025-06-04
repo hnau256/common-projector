@@ -58,22 +58,6 @@ value class TableCorners private constructor(
         closeEndBottom = endOrBottom,
     )
 
-    fun closeStartOrTop(
-        orientation: TableOrientation,
-    ): TableCorners = close(
-        orientation = orientation,
-        startOrTop = true,
-        endOrBottom = false,
-    )
-
-    fun closeEndOrBottom(
-        orientation: TableOrientation,
-    ): TableCorners = close(
-        orientation = orientation,
-        startOrTop = false,
-        endOrBottom = true,
-    )
-
     override fun toString(): String = listOf(
         "startTop" to startTopIsOpened,
         "startBottom" to startBottomIsOpened,

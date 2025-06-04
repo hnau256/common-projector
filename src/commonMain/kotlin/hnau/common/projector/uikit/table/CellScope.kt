@@ -1,15 +1,31 @@
 package hnau.common.projector.uikit.table
 
-interface CellScope {
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Shape
+import hnau.common.projector.uikit.shape.HnauShape
+import hnau.common.projector.uikit.shape.create
+import hnau.common.projector.uikit.table.layout.LayoutWeightElement
 
-    val corners: TableCorners
+data class CellScope(
+    val orientation: TableOrientation,
+    val corners: TableCorners,
+) {
 
-    companion object {
+    fun Modifier.weight(
+        weight: Float,
+    ): Modifier = then(
+        LayoutWeightElement(
+            weight = weight,
+        )
+    )
 
-        val opened: CellScope = object : CellScope {
-
-            override val corners: TableCorners
-                get() = TableCorners.opened
-        }
-    }
+    val shape: Shape
+        @Composable
+        get() = HnauShape.create(
+            startTopRoundCorners = corners.startTopIsOpened,
+            startBottomRoundCorners = corners.startBottomIsOpened,
+            endTopRoundCorners = corners.endTopIsOpened,
+            endBottomRoundCorners = corners.endBottomIsOpened,
+        )
 }

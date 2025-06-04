@@ -19,7 +19,7 @@ fun TripleRow(
 ) {
     Row(
         horizontalArrangement = Arrangement.spacedBy(
-            space = Dimens.extraSmallSeparation,
+            space = Dimens.smallSeparation,
             alignment = Alignment.CenterHorizontally,
         ),
         modifier = modifier,
