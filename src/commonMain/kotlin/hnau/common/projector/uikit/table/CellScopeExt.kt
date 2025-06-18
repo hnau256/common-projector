@@ -12,6 +12,19 @@ import androidx.compose.ui.graphics.Shape
 import kotlinx.collections.immutable.ImmutableList
 
 @Composable
+fun CellScope.Subtable(
+    cells: ImmutableList<Cell>,
+    modifier: Modifier = Modifier,
+) {
+    Table(
+        modifier = modifier,
+        orientation = orientation.opposite,
+        cells = cells,
+        corners = corners,
+    )
+}
+
+@Composable
 fun <T> CellScope.Subtable(
     items: ImmutableList<T>,
     modifier: Modifier = Modifier,

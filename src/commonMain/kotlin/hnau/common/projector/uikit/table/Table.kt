@@ -9,6 +9,25 @@ import hnau.common.projector.uikit.table.layout.TableLayout
 import hnau.common.projector.uikit.utils.Dimens
 import kotlinx.collections.immutable.ImmutableList
 
+typealias Cell = @Composable CellScope.() -> Unit
+
+@Composable
+fun Table(
+    orientation: TableOrientation,
+    cells: ImmutableList<Cell>,
+    modifier: Modifier = Modifier,
+    corners: TableCorners = TableCorners.opened,
+) {
+    Table(
+        orientation = orientation,
+        items = cells,
+        modifier = modifier,
+        corners = corners,
+    ) {cell ->
+        cell()
+    }
+}
+
 @Composable
 fun <T> Table(
     orientation: TableOrientation,

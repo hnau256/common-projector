@@ -19,7 +19,7 @@ repositories {
 }
 
 group = "com.github.hnau256"
-version = "1.0.17"
+version = "1.0.18"
 
 android {
     namespace = "com.github.hnau256." + project.name.replace('-', '.')
@@ -57,7 +57,7 @@ kotlin {
                 implementation(compose.material3)
                 implementation(compose.materialIconsExtended)
 
-                implementation("com.github.hnau256.common-kotlin:common-kotlin:1.0.2")
+                implementation("com.github.hnau256.common-kotlin:common-kotlin:1.0.5")
                 implementation("com.github.hnau256.common-model:common-model:1.0.14")
                 implementation("com.github.hnau256:common-dynamiccolor:1.0.0")
 
