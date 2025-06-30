@@ -5,54 +5,58 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxScope
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
 import kotlinx.collections.immutable.ImmutableList
+import kotlinx.coroutines.flow.StateFlow
 
-@Composable
-fun CellScope.Subtable(
+fun Subtable(
+    modifier: Modifier = Modifier,
     cells: ImmutableList<Cell>,
-    modifier: Modifier = Modifier,
-) {
+): Cell = Cell {
     Table(
         modifier = modifier,
         orientation = orientation.opposite,
+        corners = corners,
         cells = cells,
-        corners = corners,
     )
 }
 
-@Composable
-fun <T> CellScope.Subtable(
-    items: ImmutableList<T>,
+fun Subtable(
     modifier: Modifier = Modifier,
-    item: @Composable CellScope.(T) -> Unit,
-) {
+    cells: StateFlow<ImmutableList<Cell>>,
+): Cell = Cell {
     Table(
         modifier = modifier,
         orientation = orientation.opposite,
-        items = items,
-        item = item,
         corners = corners,
+        cells = cells.collectAsState().value,
     )
 }
 
-@Composable
-fun CellScope.CellBox(
+fun CellBox(
     modifier: Modifier = Modifier,
-    backgroundColor: Color = MaterialTheme.colorScheme.surfaceContainerLow,
+    weight: Float? = null,
+    backgroundColor: @Composable () -> Color = { MaterialTheme.colorScheme.surfaceContainerLow },
     contentAlignment: Alignment = Alignment.Center,
     propagateMinConstraints: Boolean = false,
     content: @Composable BoxScope.(Shape) -> Unit,
-) {
+): Cell = Cell {
     val shape = shape
     Box(
-        modifier = modifier.background(
-            color = backgroundColor,
-            shape = shape,
-        ),
+        modifier = modifier
+            .then(
+                weight
+                    ?.let { weight -> Modifier.weight(weight) }
+                    ?: Modifier
+            )
+            .background(
+                color = backgroundColor(),
+                shape = shape,
+            ),
         contentAlignment = contentAlignment,
         propagateMinConstraints = propagateMinConstraints,
     ) {
