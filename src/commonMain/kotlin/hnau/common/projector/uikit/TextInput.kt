@@ -1,6 +1,8 @@
 package hnau.common.projector.uikit
 
 import androidx.compose.foundation.interaction.MutableInteractionSource
+import androidx.compose.foundation.relocation.BringIntoViewRequester
+import androidx.compose.foundation.relocation.bringIntoViewRequester
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.MaterialTheme
@@ -12,8 +14,10 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.focus.onFocusChanged
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.text.TextStyle
@@ -22,7 +26,9 @@ import androidx.compose.ui.text.input.VisualTransformation
 import hnau.common.model.EditingString
 import hnau.common.projector.uikit.shape.HnauShape
 import hnau.common.projector.utils.textFieldValueMapper
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.launch
 
 private val mapper = EditingString.textFieldValueMapper
 
@@ -64,13 +70,25 @@ fun TextInput(
             localValue = value.let(mapper.direct)
         }
     }
+
+    val bringIntoViewRequester = remember { BringIntoViewRequester() }
+    val coroutineScope = rememberCoroutineScope()
     TextField(
         value = localValue,
         onValueChange = { newValue ->
             value.value = newValue.let(mapper.reverse)
             localValue = newValue
         },
-        modifier = modifier,
+        modifier = modifier
+            .bringIntoViewRequester(bringIntoViewRequester)
+            .onFocusChanged { focusState ->
+                if (focusState.isFocused) {
+                    coroutineScope.launch {
+                        delay(100)
+                        bringIntoViewRequester.bringIntoView()
+                    }
+                }
+            },
         enabled = enabled,
         readOnly = readOnly,
         textStyle = textStyle,
