@@ -23,10 +23,10 @@ operator fun PaddingValues.plus(
 
 @Composable
 inline fun PaddingValues.map(
-    start: (Dp) -> Dp = {Dp.Unspecified},
-    top: (Dp) -> Dp = {Dp.Unspecified},
-    end: (Dp) -> Dp = {Dp.Unspecified},
-    bottom: (Dp) -> Dp = {Dp.Unspecified},
+    start: (Dp) -> Dp = { Dp.Unspecified },
+    top: (Dp) -> Dp = { Dp.Unspecified },
+    end: (Dp) -> Dp = { Dp.Unspecified },
+    bottom: (Dp) -> Dp = { Dp.Unspecified },
 ): PaddingValues {
     val layoutDirection = LocalLayoutDirection.current
     return PaddingValues(
@@ -44,3 +44,16 @@ inline fun PaddingValues.map(
         },
     )
 }
+
+@Composable
+fun PaddingValues.copy(
+    start: Dp = Dp.Unspecified,
+    top: Dp = Dp.Unspecified,
+    end: Dp = Dp.Unspecified,
+    bottom: Dp = Dp.Unspecified,
+): PaddingValues = map(
+    start = { current -> start.takeOrElse { current } },
+    top = { current -> top.takeOrElse { current } },
+    end = { current -> end.takeOrElse { current } },
+    bottom = { current -> bottom.takeOrElse { current } },
+)
